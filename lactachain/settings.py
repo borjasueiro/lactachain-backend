@@ -133,4 +133,7 @@ ALLOWED_HOSTS = ['192.168.1.103','192.168.180.210', 'localhost', '127.0.0.1']
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication'
+    ]
 }
