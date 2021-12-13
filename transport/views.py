@@ -5,25 +5,24 @@ from .serializers import TransporterSerializer, TransportSerializer, MilkDeliver
 from .models import Transporter, Transport, MilkDelivery
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
+from django.db.models import Q
+from .filters import TransportFilter
+import django_filters.rest_framework as filters
 
 class TransportViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
+    transporter = TransporterSerializer
     queryset = Transport.objects.all().order_by('car_registration')
     serializer_class = TransportSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = TransportFilter
 
 class TransporterViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
+    queryset = Transporter.objects.all().order_by('name')
     serializer_class = TransporterSerializer
-    def get_queryset(self):
-        """
-        This view should return a list of all the transporter
-        for the currently authenticated user.
-        """
-        queryset = Transporter.objects.all().order_by('name')
-        nif = self.request.query_params.get('nif')
-        if nif is not None:
-            queryset = queryset.filter(nif=nif)
-        return queryset
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_fields = ['nif']
 
 class MilkDeliveryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
