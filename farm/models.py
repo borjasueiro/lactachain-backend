@@ -34,6 +34,7 @@ class MilkCollection(models.Model):
         Transporter,
         on_delete=models.CASCADE,
     )
+    delivered = models.BooleanField(default=False)
     def __str__(self):
         return str(self.code)
     def clean(self):
