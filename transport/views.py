@@ -16,6 +16,7 @@ class TransportViewSet(viewsets.ModelViewSet):
     serializer_class = TransportSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = TransportFilter
+    pagination_class = None
 
 class TransporterViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
