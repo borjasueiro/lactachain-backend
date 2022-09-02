@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'farm.apps.FarmConfig',
     'transport.apps.TransportConfig',
     'plant.apps.PlantConfig',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ALLOWED_HOSTS = ['192.168.28.210','192.168.218.210', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*','192.168.1.106','192.168.1.104','192.168.1.102', 'localhost', '127.0.0.1']
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
